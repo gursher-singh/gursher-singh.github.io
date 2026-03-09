@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Enterprise Services - Gursher Singh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .card-scene { padding: 40px 0; }
+    .lab-card { margin-bottom: 0; }
+    .lab-card { width: 100%; transform: scale(0.92); opacity: 0.45; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease; will-change: transform, opacity; }
+    .lab-card.in-focus { transform: scale(1); opacity: 1; border-color: var(--border2); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+    .lab-card.near-focus { transform: scale(0.96); opacity: 0.65; }
+    .cards-section { padding: 48px 0 120px; }
+    .page-context { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title">Linux Enterprise Services Administration</span>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Linux Enterprise<br/>Services Administration</h1>
+    <p class="page-context">Algonquin College &nbsp;·&nbsp; Sep – Dec 2024</p>
+    <p style="margin-top:18px;">Built a complete Linux server environment from scratch - deploying, configuring, and hardening every major enterprise service: network setup, secure remote access, DNS, web hosting, file sharing, email, and directory services. Each independently verified and production-ready.</p>
+    <div class="header-badges" style="margin-top:20px;">
+      </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="cards-section">
+  <div class="container">
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">NET</div>
+          <div class="lab-info">
+            <h3>Server Network Configuration</h3>
+            <p>Configured the Linux server's network interfaces from the ground up - static IPs, routing, and hostname resolution - forming the stable foundation every other service depends on.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">NetworkManager</span><span class="lab-tag">Static IP</span><span class="lab-tag">Routing</span><span class="lab-tag">DNS Resolver</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Every service on the server - DNS, mail, LDAP, web - relies on the network layer being predictable. A server with a dynamically assigned address can change IPs unexpectedly, breaking DNS records and service configurations across the environment.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured two network interfaces - one bridged to the internal network with a static IP, one NAT for internet access. Set static IP parameters, gateway, and DNS resolver settings through interface configuration files. Verified routing tables and confirmed name resolution before moving on to any other service.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Stable, predictable network foundation in place. All subsequent services configured against fixed addresses that wouldn't change between reboots, eliminating a whole category of intermittent failures.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">DIAG</div>
+          <div class="lab-info">
+            <h3>Network Diagnostics & Firewall Control</h3>
+            <p>Applied the core Linux network toolset to verify services, test connectivity, capture live traffic, and enforce firewall rules - the same tools used in production to diagnose issues and control access.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">tcpdump</span><span class="lab-tag">netcat</span><span class="lab-tag">iptables</span><span class="lab-tag">Connection Monitoring</span><span class="lab-tag">Packet Analysis</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">When a service isn't reachable, the cause could be a firewall rule blocking traffic, a service not listening on the expected port, or a routing problem. Each requires a different tool to diagnose - and guessing wastes time in any real environment.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Used connection monitoring tools to confirm which services were actively listening and on which interfaces. Used netcat to test raw TCP connectivity between server and client independent of any application. Wrote iptables rules to allow traffic from authorized networks while dropping all other sources on specific ports. Captured and filtered live traffic with tcpdump to confirm packets were arriving at the right interface.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Each service's network behaviour verified independently before layering on the next. Firewall rules in place and confirmed working - the environment was locked down by default, with access explicitly permitted only where needed.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">SSH</div>
+          <div class="lab-info">
+            <h3>Secure Remote Access with SSH & Public-Key Authentication</h3>
+            <p>Hardened remote access by replacing password-based SSH with public-key authentication - eliminating brute-force as an attack vector - and restricting access to authorized source networks at the firewall level.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">OpenSSH</span><span class="lab-tag">RSA Key Pairs</span><span class="lab-tag">Public-Key Auth</span><span class="lab-tag">iptables</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Password-based SSH is a constant target - automated bots continuously attempt common credentials against any exposed port 22. A single weak password on any account is enough for a breach. The default configuration is not secure enough for any server that matters.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Generated RSA key pairs on the client and deployed public keys to each user's authorized keys on the server, including root. Updated the SSH server configuration to accept only key-based authentication, disabling password login entirely. Applied firewall rules restricting SSH access to the designated client network only.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Passwordless login confirmed working for all required accounts. Brute-force attack surface eliminated. Login events verified in the system auth log, remote access fully auditable and restricted to authorized users from authorized networks.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">DNS</div>
+          <div class="lab-info">
+            <h3>Authoritative DNS with Primary / Secondary Replication</h3>
+            <p>Deployed a full BIND DNS environment - a primary authoritative name server for a custom domain with forward and reverse zones, and a secondary server that automatically replicates zone data for redundancy.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">BIND</span><span class="lab-tag">Authoritative DNS</span><span class="lab-tag">Zone Replication</span><span class="lab-tag">Forward / Reverse Zones</span><span class="lab-tag">Redundancy</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Every service in the environment depends on DNS to find other services by name. A single DNS server is a single point of failure, if it goes down, nothing resolves and the entire environment effectively stops functioning, even if all other services are still running.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Installed BIND and wrote zone files for the forward zone covering all server hostnames, and a reverse zone mapping IPs back to hostnames - required for mail authentication and system logging. Configured the primary server as authoritative. Deployed a secondary server and configured automatic zone transfers so it stays current whenever records change, with no manual sync required.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Both primary and secondary DNS servers answering queries correctly. Zone replication confirmed working, a change on the primary propagated to the secondary automatically. Reverse lookups verified for all hosts, enabling correct mail delivery and audit log resolution.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">WEB</div>
+          <div class="lab-info">
+            <h3>Web Server with Apache & SSL/TLS</h3>
+            <p>Deployed Apache hosting multiple sites on a single server using virtual hosting - with sites secured by SSL/TLS. The same architecture used by the majority of Linux-based web environments in production.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Apache</span><span class="lab-tag">Virtual Hosting</span><span class="lab-tag">SSL / TLS</span><span class="lab-tag">HTTPS</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Hosting one site per server is wasteful and doesn't reflect how production environments work. Multiple sites need to coexist on shared infrastructure, cleanly separated by domain - and needs to be served securely over HTTPS, which is now the baseline expectation for any web-facing service.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured Apache with a custom configuration file defining three virtual hosts serving separate domains from their own document roots, with SSL enabled, pointing to the certificate and key files. Each site had independent logging.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">All three sites independently reachable and serving the correct content. HTTPS site confirmed secure with no certificate errors. Access and error logs clean - the server handling multiple sites correctly with no configuration bleed between them.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">FILE</div>
+          <div class="lab-info">
+            <h3>Cross-Platform File Sharing with Samba & NFS</h3>
+            <p>Configured two complementary file sharing protocols - Samba for Windows-Linux access over SMB, and NFS for Linux-to-Linux network storage - each with appropriate access controls for different client types.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Samba</span><span class="lab-tag">NFS</span><span class="lab-tag">SMB Protocol</span><span class="lab-tag">Access Control</span><span class="lab-tag">Network Mounts</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Most enterprise environments are mixed - Linux servers serving Windows workstations and other Linux systems. A single file sharing solution doesn't cover both. Samba speaks SMB natively to Windows clients; NFS is the standard for Linux-to-Linux storage. Running both means every client type gets the right protocol without compromise.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured Samba with user accounts and shares covering home directories and custom access paths. Validated the configuration before restarting the service. Tested access from both a Linux client and a Windows host mapping a network drive. Configured NFS exports with differentiated permission tiers - read-only for some shares, read-write for others - and mounted them on the Linux client to confirm enforcement.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Windows clients accessing Linux shares over SMB with no compatibility issues. NFS mounts working on Linux clients with permission tiers enforced as configured. Both protocols running concurrently on the same server - each serving its intended client type correctly.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">MAIL</div>
+          <div class="lab-info">
+            <h3>Mail Server with Postfix</h3>
+            <p>Deployed Postfix as the mail transfer agent - configuring inbound and outbound delivery, monitoring the mail queue, and diagnosing delivery failures using delivery status codes.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Postfix</span><span class="lab-tag">SMTP</span><span class="lab-tag">Mail Queue</span><span class="lab-tag">Delivery Diagnostics</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Email delivery is opaque by default - a message either arrives or it doesn't, with no obvious indication of why. In any environment relying on mail for alerts, reports, or user communication, the ability to monitor the queue and read delivery status is the difference between knowing something failed and finding out hours later.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured Postfix with domain and mailbox settings and managed the service through systemctl. Sent and received email between server and client users, monitoring delivery in real time through the mail log. Inspected the deferred queue to identify held messages, diagnosed failures using delivery status codes, and cleared the queue after resolving the cause.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Mail flowing reliably between users in both directions. Queue monitoring and delivery diagnostics confirmed working - able to identify, diagnose, and resolve delivery failures rather than simply observing that mail wasn't arriving.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">DIR</div>
+          <div class="lab-info">
+            <h3>Centralized Directory Services with OpenLDAP</h3>
+            <p>Deployed an LDAP directory server as a single source of truth for user accounts and host records - so any client on the network can authenticate and resolve resources centrally, instead of managing accounts independently on every machine.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">OpenLDAP</span><span class="lab-tag">Directory Services</span><span class="lab-tag">Centralized Auth</span><span class="lab-tag">Unix Account Objects</span><span class="lab-tag">iptables</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Without a central directory, user accounts exist independently on every server. Adding a user means creating accounts on every machine they need access to; removing one means finding and deleting accounts everywhere. At any real scale, that's unmanageable - and it means there's no single authoritative record of who has access to what.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Installed and configured OpenLDAP with the appropriate schemas for Unix user accounts and host objects. Populated the directory with user entries and host records using LDIF files. Verified the directory was queryable from both server and client. Configured the client to resolve host lookups against LDAP. Applied a firewall rule restricting directory access to authorized networks only.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Centralized directory operational - user accounts and host records stored in one place and accessible from any authorized client on the network. Host lookups resolving via LDAP confirmed. Directory access restricted at the firewall - not exposed beyond the intended network boundary.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num alt">SBA</div>
+          <div class="lab-info">
+            <h3>Full Environment Rebuild - Timed Assessment</h3>
+            <p>Rebuilt the entire Linux enterprise environment from scratch in a single timed session - no guides, starting from a blank OS install. SSH, DNS primary/secondary replication, OpenLDAP, and Postfix, all independently verified working before the session ended.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">SSH</span><span class="lab-tag">BIND DNS</span><span class="lab-tag">OpenLDAP</span><span class="lab-tag">Postfix</span><span class="lab-tag">End-to-End Verification</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Following documentation step-by-step is not the same as understanding a system. The assessment required building a complete, working environment under time pressure with no reference material - testing whether the knowledge was internalized, not just practiced.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Started from a fresh Linux install and worked systematically through each service layer - network first, then SSH, then DNS primary and secondary, then LDAP, then mail. Verified each service independently before moving to the next, so a failure at any layer was isolated and fixable without cascading through the rest of the environment.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">All services brought up and independently verified within the session: passwordless SSH for all required users, DNS zone replication confirmed between primary and secondary, LDAP host lookups resolving on the client, and mail delivery confirmed end-to-end. Full environment operational from a blank system under exam conditions.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Gursher Singh &nbsp;·&nbsp; <a href="mailto:gurshers969@gmail.com">gurshers969@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank">linkedin.com/in/gurshersingh1912</a></p>
+  </div>
+</footer>
+
+<script>
+  const scenes = document.querySelectorAll('.card-scene');
+  const cards  = document.querySelectorAll('.lab-card');
+  function updateCards() {
+    const center = window.innerHeight / 2;
+    let closestIdx = 0, closestDist = Infinity, secondIdx = -1, secondDist = Infinity;
+    scenes.forEach((scene, i) => {
+      const rect = scene.getBoundingClientRect();
+      const dist = Math.abs(rect.top + rect.height / 2 - center);
+      if (dist < closestDist) { secondDist = closestDist; secondIdx = closestIdx; closestDist = dist; closestIdx = i; }
+      else if (dist < secondDist) { secondDist = dist; secondIdx = i; }
+    });
+    cards.forEach((card, i) => {
+      card.classList.remove('in-focus', 'near-focus');
+      if (i === closestIdx) card.classList.add('in-focus');
+      else if (i === secondIdx) card.classList.add('near-focus');
+    });
+  }
+  window.addEventListener('scroll', updateCards, { passive: true });
+  updateCards();
+</script>
+</body>
+</html>

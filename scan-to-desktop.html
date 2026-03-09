@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan-to-Desktop Service Deployment - Gursher Singh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .card-scene { padding: 40px 0; }
+    .lab-card { margin-bottom: 0; }
+    .lab-card { width: 100%; transform: scale(0.92); opacity: 0.45; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease; will-change: transform, opacity; }
+    .lab-card.in-focus { transform: scale(1); opacity: 1; border-color: var(--border2); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+    .lab-card.near-focus { transform: scale(0.96); opacity: 0.65; }
+    .cards-section { padding: 48px 0 120px; }
+    .page-context { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title">Scan-to-Desktop Service Deployment</span>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Scan-to-Desktop Service Deployment</h1>
+    <p class="page-context">Ontario Public Service &nbsp;·&nbsp; May – Aug 2025</p>
+    <p style="margin-top:18px;">Tasked with validating and advancing a Scan-to-Folder deployment for Windows 11 endpoints across provincial park locations. Park sites operate off the corporate network, which caused device policies to treat local connections differently than expected - exposing gaps that only surfaced in the field. Diagnosed each issue, implemented approved remediations, and reported findings that shaped how the process was refined before broader rollout.</p>
+    <div class="header-badges" style="margin-top:20px;">
+      </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="cards-section">
+  <div class="container">
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">DIAG</div>
+          <div class="lab-info">
+            <h3>Diagnosing Silent Scan Failures with Wireshark</h3>
+            <p>Scans were failing at certain locations with no useful error from the printer or Windows. Park sites operate off the corporate network, so device policies classify the local network differently - behaving more like a home network than a managed corporate network. Packet analysis was the only reliable way to determine what was actually being blocked and where.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Wireshark</span><span class="lab-tag">SMB2/SMB3</span><span class="lab-tag">Packet Capture</span><span class="lab-tag">TCP/IP</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Because these endpoints sit off the corporate network, standard policy assumptions didn't hold. The local network was being treated as untrusted by the OS, which changed how firewall profiles, share access, and SMB negotiation behaved - none of which was obvious from the surface when a scan failed silently.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Captured live SMB traffic between the Ricoh MFP and the Windows 11 endpoint during a scan attempt. Filtered for SMB session setup to locate exactly where the connection was failing. Each failure pattern was distinguishable - a reset response indicated a firewall block, an access-denied response indicated a permissions issue, and no response at all indicated a network path problem. This gave a clear, repeatable method for categorizing failures at each site.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Each site's failure was identified and categorized with precision - providing the team with specific, reproducible findings rather than general reports. This shifted the remediation effort from reactive trial-and-error to targeted, evidence-based fixes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">FW</div>
+          <div class="lab-info">
+            <h3>Firewall Profile Misclassification on Off-Network Endpoints</h3>
+            <p>The most common issue found: Windows 11 was classifying the local park network under the public firewall profile rather than private, which restricted inbound traffic in ways the deployment process hadn't accounted for. This was a field-only finding - not visible from the design stage.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Windows Defender Firewall</span><span class="lab-tag">Inbound Rules</span><span class="lab-tag">Network Profile Classification</span><span class="lab-tag">Off-Network Endpoints</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Park endpoints are domain-joined, but because they operate off the corporate network, inbound SMB traffic from non-corporate sources was being blocked by policy. The deployment process assumed internal network conditions - it didn't account for sites where the scanner and the endpoint were on a network the domain treated as external.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Confirmed via packet capture that SMB traffic from the scanner was being dropped at the firewall level. Proposed a targeted remediation - a scoped inbound firewall rule allowing scanner traffic specifically, without loosening the broader policy posture - and got it approved before implementing. Validated the fix end-to-end at the affected sites. Findings were reported to the senior team, and the approved rule configuration was later incorporated into the deployment policy applied at scale.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Remediation validated and confirmed working at pilot sites. The firewall gap - invisible during process design - was documented and fed back to the team in time to be addressed in policy before the province-wide rollout, preventing it from recurring at every subsequent location.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">PERM</div>
+          <div class="lab-info">
+            <h3>Permission Configuration & Confidentiality Controls</h3>
+            <p>Permission setup varied significantly across locations - partly because sites had different device types. Shared workstations used by multiple staff required a different access model than single-user devices, and printer settings needed adjustments to maintain confidentiality in a government environment.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">SMB Shares</span><span class="lab-tag">NTFS Permissions</span><span class="lab-tag">Ricoh MFP Admin Portal</span><span class="lab-tag">Confidentiality Controls</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The deployment process used a single permission model for all endpoints, but some sites had a mix of shared workstations and single-user devices. A shared device needed folder permissions scoped so each user's scans landed in their own designated location - not a single shared destination accessible to everyone. Additionally, default Ricoh MFP settings allowed scanned documents to be visible in the printer's job history, which was a confidentiality concern for government documents.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured custom SMB share and NTFS permission sets depending on device type - shared workstations received user-scoped folder structures with per-user write access, while single-user devices used simpler single-destination configurations. On the printer side, modified Ricoh MFP settings via the admin portal to allow user login on the printer panel, ensuring scanned content wasn't accessible to subsequent users.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Permission configurations tailored to actual site conditions rather than a one-size-fits-all model. Confidentiality controls on the MFP ensured scanned government documents weren't exposed.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-scene">
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">REPORT</div>
+          <div class="lab-info">
+            <h3>Identifying Gaps in the Deployment Documentation</h3>
+            <p>The provided deployment guide was missing steps that only became apparent during field testing. Flagging these gaps early meant the team could update the process before it was handed to technicians who would follow it at scale.</p>
+          </div>
+        </div>
+        <div class="lab-tags"><span class="lab-tag">Field Testing</span><span class="lab-tag">Process Documentation</span><span class="lab-tag">Gap Analysis</span><span class="lab-tag">Reporting</span></div>
+        <div class="wwh">
+          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The deployment document had been written based on expected behaviour in a standard corporate environment. Field testing revealed things like local account password expiry. Windows defaults this to 30 days, which would silently break scanner authentication without any alert. The guide also didn't account the different permission models required for shared versus single-user devices.</div></div>
+          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Logged each gap as it was encountered - what the document said, what actually happened in the field, and what step was missing. Compiled findings into a structured report covering the local account expiry issue, permission model discrepancies, and printer confidentiality settings. Submitted the report to the senior team with suggested additions to the deployment checklist for each gap identified.</div></div>
+          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">The team received a field-tested analysis of the deployment documentation before the process went to scale. Issues like the local account password expiry and different permissions model for shared devices, were caught and addressed in the updated process rather than discovered in production.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Gursher Singh &nbsp;·&nbsp; <a href="mailto:gurshers969@gmail.com">gurshers969@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank">linkedin.com/in/gurshersingh1912</a></p>
+  </div>
+</footer>
+
+<script>
+  const scenes = document.querySelectorAll('.card-scene');
+  const cards  = document.querySelectorAll('.lab-card');
+  function updateCards() {
+    const center = window.innerHeight / 2;
+    let closestIdx = 0, closestDist = Infinity, secondIdx = -1, secondDist = Infinity;
+    scenes.forEach((scene, i) => {
+      const rect = scene.getBoundingClientRect();
+      const dist = Math.abs(rect.top + rect.height / 2 - center);
+      if (dist < closestDist) { secondDist = closestDist; secondIdx = closestIdx; closestDist = dist; closestIdx = i; }
+      else if (dist < secondDist) { secondDist = dist; secondIdx = i; }
+    });
+    cards.forEach((card, i) => {
+      card.classList.remove('in-focus', 'near-focus');
+      if (i === closestIdx) card.classList.add('in-focus');
+      else if (i === secondIdx) card.classList.add('near-focus');
+    });
+  }
+  window.addEventListener('scroll', updateCards, { passive: true });
+  updateCards();
+</script>
+</body>
+</html>
