@@ -1,183 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Windows Active Directory Administration - Gursher Singh</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css" />
-  <style>
-    .card-scene { padding: 40px 0; }
-    .lab-card { margin-bottom: 0; }
-    .lab-card { width: 100%; transform: scale(0.92); opacity: 0.45; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease; will-change: transform, opacity; }
-    .lab-card.in-focus { transform: scale(1); opacity: 1; border-color: var(--border2); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
-    .lab-card.near-focus { transform: scale(0.96); opacity: 0.65; }
-    .cards-section { padding: 48px 0 120px; }
-    .page-context { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows Domain Administration | Gursher Singh</title>
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
-<nav>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back</a>
-    <span class="nav-sep">|</span>
-    <span class="nav-title">Windows Active Directory Administration</span>
+  <canvas id="bg-canvas"></canvas>
+  <div class="layout">
+    <nav class="navbar">
+      <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+      <div class="nav-links">
+        <span class="nav-logo">Windows Domain Administration</span>
+      </div>
+    </nav>
+
+    <main class="bento-grid">
+      <div class="bento-card col-span-12 project-hero">
+        <h1>Windows Domain Administration</h1>
+        <p>Designed and deployed a Multi-domain Windows Server environment with centralized software management, internal DNS infrastructure, fully operational Exchange mail system, and integrated cloud extension featuring secure identity and blob storage.</p>
+        <div class="tags" style="justify-content: center; margin-top: 32px;">
+          <span class="tag">Active Directory</span><span class="tag">Group Policy</span><span class="tag">Microsoft Exchange</span><span class="tag">DNS</span><span class="tag">Microsoft Azure</span><span class="tag">RBAC</span>
+        </div>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Centralized Software Deployment via Group Policy</h3>
+        <p class="wwh-content">Automated application installs, upgrades, and removals across departments using Group Policy Objects to ensure version consistency and reduce manual IT overhead.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Internal DNS Infrastructure</h3>
+        <p class="wwh-content">Built a fully authoritative internal DNS infrastructure. Configured forward and reverse lookup zones to support Active Directory, Exchange, and seamless hostname resolution.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Enterprise Email System with Microsoft Exchange</h3>
+        <p class="wwh-content">Deployed a production-grade Microsoft Exchange Server environment. Enforced mailbox storage quotas, configured outbound SMTP routing, and retention policies.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Cloud Server Infrastructure on Microsoft Azure</h3>
+        <p class="wwh-content">Extended on-premises infrastructure into Microsoft Azure. Provisioned Windows Server virtual machines within dedicated virtual networks, using Azure Bastion for secure remote access without exposing public ports.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Cloud Object Storage with Azure Blob</h3>
+        <p class="wwh-content">Implemented scalable cloud storage using Azure Blob containers. Enforced private-by-default access controls and diagnostic logging for a clean, auditable storage trail.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Cloud Identity & Access Management with Azure RBAC</h3>
+        <p class="wwh-content">EnforcedApplied least-privilege access across cloud resources using Azure Role-Based Access Control. Assigned scoped built-in roles and monitored Activity Logs to ensure strict identity and access governance.</p>
+      </div>
+
+    </main>
   </div>
-</nav>
-
-<section class="page-header">
-  <div class="container">
-    <h1>Windows Active Directory<br/>Administration</h1>
-    <p class="page-context">Algonquin College &nbsp;·&nbsp; Sep – Dec 2024</p>
-    <p style="margin-top:18px;">Built a multi-domain enterprise network from scratch - domain hierarchies, GPO-based software deployment and access control, WDS automated imaging, Exchange Server with cross-domain mail flow, and an Azure cloud layer with VMs, storage, and RBAC. Every component integrated and verified end-to-end.</p>
-    <div class="header-badges" style="margin-top:20px;">
-      </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<section class="cards-section">
-  <div class="container">
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">GPO</div>
-          <div class="lab-info">
-            <h3>Centralized Software Deployment via Group Policy</h3>
-            <p>Built a GPO-based software distribution pipeline - giving IT the ability to push, upgrade, and retire applications across the entire organization based on a user's department, with no manual intervention on end-user machines.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Group Policy</span><span class="lab-tag">Software Deployment</span><span class="lab-tag">Active Directory OUs</span><span class="lab-tag">MSI Packaging</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Managing software manually across dozens of machines leads to version inconsistencies, missed updates, and security gaps. IT needs a way to deploy, update, and retire applications organization-wide from a single point, without touching individual endpoints and without depending on users to install things themselves.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Created GPOs scoped to specific OUs in Active Directory. Used Assigned deployment for mandatory software - silently auto-installs on login with no user prompt. Used Published for optional tools - user self-serves via Control Panel. Managed separate software bundles per department. Ran a live upgrade replacing a legacy package with its successor using GPO's upgrade policy, and retired software gracefully - removing the deployment while preserving already-installed copies for existing users.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Software deployment, upgrade, and retirement all controlled from a single GPO console. The right tools automatically present for each department's users on login - no manual installs, no version drift, no IT intervention needed per-machine.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">DNS</div>
-          <div class="lab-info">
-            <h3>Internal DNS Infrastructure</h3>
-            <p>Active Directory can't function without DNS. Exchange can't route mail without reverse DNS. Built the domain's authoritative DNS layer - forward and reverse zones, full record coverage - as the foundation everything else depended on.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Windows DNS</span><span class="lab-tag">Forward Zones</span><span class="lab-tag">Reverse Zones</span><span class="lab-tag">PTR Records</span><span class="lab-tag">SOA / NS</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">AD relies entirely on DNS to locate domain controllers - without it, machines can't join the domain and users can't authenticate. Exchange requires reverse DNS to pass mail authentication. DNS isn't a nice-to-have; it's the foundational service that determines whether the rest of the environment functions at all.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured forward lookup zones in Windows DNS Manager with A records for every server on the network. Built a reverse lookup zone under the correct namespace and created PTR records for each host so reverse resolution worked across all machines. Verified zone authority by checking SOA and NS records - confirming the server was the designated authoritative source for the domain.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Full forward and reverse name resolution working across the domain. AD authentication, Exchange mail routing, and all inter-service communication functioned correctly - DNS doing exactly what it needs to do: staying invisible while everything else works.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">MAIL</div>
-          <div class="lab-info">
-            <h3>Enterprise Email with Microsoft Exchange</h3>
-            <p>Deployed and administered a full Exchange Server environment - mailbox quotas, outbound SMTP routing, cross-domain mail flow, compliance retention, and full client configuration for both Outlook and Thunderbird.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Exchange Server</span><span class="lab-tag">SMTP</span><span class="lab-tag">Mailbox Management</span><span class="lab-tag">PowerShell</span><span class="lab-tag">Retention Policies</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Enterprise email requires active management: storage quotas prevent one user from filling shared disk, outbound routing needs to be controlled for deliverability and inspection, and retention policies are a compliance requirement - organizations cannot allow employees to delete relevant email during legal proceedings or audits. All of this needs to be configured, not just installed.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Configured per-mailbox storage quotas (warning, send limit, receive cutoff) in the Exchange Admin Center. Created an SMTP Send Connector routing all outbound mail through a smart host. Applied a retention hold to suspend policy enforcement on a specific mailbox - simulating an employee leave scenario. Configured Outlook and Thunderbird clients and verified cross-domain mail flow between domains.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Fully operational Exchange environment with enforced storage governance, controlled outbound routing, compliance-ready retention hold capability, and verified email delivery between domains and between Outlook and Thunderbird clients.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num alt">VM</div>
-          <div class="lab-info">
-            <h3>Cloud Server Infrastructure on Microsoft Azure</h3>
-            <p>Deployed a Windows Server VM in Azure with proper network segmentation, availability zone placement, and secure remote access - without exposing a public RDP port that attackers actively scan for.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Azure VM</span><span class="lab-tag">Azure Bastion</span><span class="lab-tag">Virtual Network</span><span class="lab-tag">Availability Zones</span><span class="lab-tag">Resource Groups</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Standing up a cloud VM securely requires more than clicking "deploy" - a publicly exposed RDP port is a constant target for brute-force attacks. Availability and cost management require intentional choices around zone placement and resource grouping from the start.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Provisioned a Standard B1ms VM in a dedicated resource group inside a virtual network with a dedicated subnet. Placed the VM in an availability zone for resilience. Enabled Azure Bastion for browser-based RDP - no public IP on the VM, no port 3389 exposed to the internet. Managed the full VM lifecycle and monitored health events through the Azure activity log.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">A running cloud VM accessible only through Bastion, removing the RDP attack surface entirely. Structured resource group setup gave clean billing separation and lifecycle management, matching how teams manage Azure resources in production.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num alt">STORE</div>
-          <div class="lab-info">
-            <h3>Cloud Object Storage with Azure Blob</h3>
-            <p>Deployed a private Azure Blob storage environment with full diagnostic logging - ensuring data access is locked down by default and every operation is captured for security auditing.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Azure Blob Storage</span><span class="lab-tag">Access Control</span><span class="lab-tag">Diagnostic Logging</span><span class="lab-tag">Storage Browser</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Misconfigured public access on Azure storage containers has been the root cause of major data breaches. The default should always be private - and beyond access control, security teams need a record of who accessed what data and when. Neither happens without explicit configuration.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Created a Storage Account and provisioned Blob containers with anonymous access disabled at both the container and account level. Enabled storage diagnostics routing all read, write, and delete operations to a dedicated log container - creating a tamper-evident audit trail. Used Azure Storage Browser to manage contents and verified log capture from the portal.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Private-by-default storage with full operational logging. Every access event captured, answering the key security audit question of who accessed what, and when.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num alt">IAM</div>
-          <div class="lab-info">
-            <h3>Cloud Identity & Access Management with Azure RBAC</h3>
-            <p>Implemented least-privilege access control across Azure resources - users get only the permissions their role requires, with every change logged and auditable in Activity Logs.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Azure RBAC</span><span class="lab-tag">IAM</span><span class="lab-tag">Least Privilege</span><span class="lab-tag">Activity Logs</span><span class="lab-tag">Access Control (IAM)</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Broad permissions granted for convenience are how breaches and accidental deletions happen. RBAC enforces least privilege: a developer can deploy but can't touch billing; a support tech can read logs but can't delete infrastructure. It's a baseline control required by ISO 27001, SOC 2, and NIST - and it needs to be verified, not just assigned.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Assigned Azure built-in roles at resource group scope via Access Control (IAM) - scoped to the minimum necessary. Used the "Check access" feature to verify effective permissions before and after assignment. Validated enforcement by logging into Azure with a restricted account and confirming access boundaries.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Least-privilege access enforced and verified. A complete timestamped audit trail of every access modification, demonstrating the kind of IAM hygiene cloud security audits look for.</div></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p><a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Gursher Singh &nbsp;·&nbsp; <a href="mailto:gurshers969@gmail.com">gurshers969@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank">www.linkedin.com/in/gurshersingh1912</a></p>
-  </div>
-</footer>
-
-<script>
-  const scenes = document.querySelectorAll('.card-scene');
-  const cards  = document.querySelectorAll('.lab-card');
-  function updateCards() {
-    const center = window.innerHeight / 2;
-    let closestIdx = 0, closestDist = Infinity, secondIdx = -1, secondDist = Infinity;
-    scenes.forEach((scene, i) => {
-      const rect = scene.getBoundingClientRect();
-      const dist = Math.abs(rect.top + rect.height / 2 - center);
-      if (dist < closestDist) { secondDist = closestDist; secondIdx = closestIdx; closestDist = dist; closestIdx = i; }
-      else if (dist < secondDist) { secondDist = dist; secondIdx = i; }
-    });
-    cards.forEach((card, i) => {
-      card.classList.remove('in-focus', 'near-focus');
-      if (i === closestIdx) card.classList.add('in-focus');
-      else if (i === secondIdx) card.classList.add('near-focus');
-    });
-  }
-  window.addEventListener('scroll', updateCards, { passive: true });
-  updateCards();
-</script>
+  <script src="background.js"></script>
 </body>
 </html>

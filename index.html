@@ -1,331 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gursher Singh - IT Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0f1117; --surface: #161b27; --surface2: #1c2235;
-      --border: #222840; --border2: #2a3350;
-      --accent: #5b8dee; --accent-dim: rgba(91,141,238,0.12);
-      --text: #c9d1e0; --muted: #64718f; --heading: #edf0f7;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.75; min-height: 100vh; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 0; }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.9rem; font-weight: 500; color: var(--heading); }
-    .nav-logo span { color: var(--accent); }
-    .nav-right { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); }
-    .hero { min-height: 100vh; display: flex; align-items: center; padding: 0; }
-    .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; color: var(--heading); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 24px; }
-    .hero-desc { font-size: clamp(0.9rem, 1.8vw, 1.05rem); color: var(--muted); line-height: 1.8; margin-bottom: 48px; }
-    .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; padding: 12px 28px; border-radius: 8px; text-decoration: none; transition: all 0.18s; cursor: pointer; border: none; display: inline-block; }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #4a7de0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(91,141,238,0.3); }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-    .divider { border: none; border-top: 1px solid var(--border); }
-    .section { padding: 60px 0; }
-    .section-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .section-title { font-size: 1.5rem; font-weight: 700; color: var(--heading); letter-spacing: -0.02em; margin-bottom: 32px; }
-    .projects { display: flex; flex-direction: column; gap: 38px; }
-    .project-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
-    .project-card:hover { border-color: var(--border2); background: var(--surface2); }
-    .project-card:hover .card-arrow { color: var(--accent); transform: translate(3px, -3px); }
-    .card-left { flex: 1; min-width: 0; }
-    .card-title { font-size: 1.05rem; font-weight: 600; color: var(--heading); letter-spacing: -0.01em; margin-bottom: 4px; }
-    .card-where { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--muted); margin-bottom: 12px; }
-    .card-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-    .card-stack-tag { font-family: 'DM Mono', monospace; font-size: 0.63rem; padding: 3px 9px; border-radius: 4px; background: rgba(91,141,238,0.08); border: 1px solid rgba(91,141,238,0.2); color: #89b0f0; letter-spacing: 0.02em; }
-    .card-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
-    .card-cta { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); white-space: nowrap; display: flex; align-items: center; gap: 5px; transition: gap 0.15s; }
-    .project-card:hover .card-cta { gap: 8px; }
-    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
-    .card-count { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); white-space: nowrap; }
-    .card-arrow { font-size: 1.1rem; color: var(--muted); transition: color 0.15s, transform 0.15s; }
-    .project-card.placeholder { opacity: 0.4; border-style: dashed; cursor: default; pointer-events: none; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 580px) { .about-grid { grid-template-columns: 1fr; } }
-    .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
-    .about-card h4 { font-family: 'DM Mono', monospace; font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-    .about-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
-    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
-    footer p { font-family: 'DM Mono', monospace; font-size: 0.71rem; color: var(--muted); }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .hero h1 { animation: fadeUp 0.55s ease both 0.05s; }
-    .hero-desc { animation: fadeUp 0.55s ease both 0.18s; }
-    .hero-buttons { animation: fadeUp 0.55s ease both 0.30s; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gursher Singh | IT Portfolio</title>
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
-<section class="hero">
-  <div class="container">
-    <h1>Gursher Singh</h1>
-    <p class="hero-desc">IT Support Specialist &amp; Systems Administrator - endpoint provisioning, identity management, ITIL-aligned incident response, and Tier 2 troubleshooting across Windows, networking, and enterprise infrastructure.</p>
-    <div class="hero-buttons">
-      <a href="resume.pdf" class="btn btn-primary" download>&#8595; Download Resume</a>
-      <a href="#experience" class="btn btn-ghost">Work Experience</a>
-      <a href="#projects" class="btn btn-ghost">Projects</a>
-      <a href="#about" class="btn btn-ghost">About Me</a>
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section class="section" id="experience">
-  <div class="container">
-    <h2 class="section-title">Work Experience</h2>
-    <div style="display:flex;flex-direction:column;gap:16px;">
+  <canvas id="bg-canvas"></canvas>
+  <div class="layout">
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">Gursher Singh</a>
+      <div class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </nav>
 
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 26px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;">
-        <div>
-          <div style="font-size:1.02rem;font-weight:600;color:var(--heading);letter-spacing:-0.01em;margin-bottom:4px;">End-User IT Experience Analyst — Co-op</div>
-          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:10px;">Ontario Public Service &nbsp;·&nbsp; Government of Ontario</div>
-          <p style="font-size:0.84rem;color:var(--muted);line-height:1.7;max-width:560px;">Triaged L2 incidents with 98% SLA compliance across IP networking, software, and hardware. Provisioned endpoints via MDM and standardized imaging. Supported a 65,000+ device Windows 11 migration and pilot tested network scanning service deployment across  provincial park locations. Authored knowledge base documentation that reduced escalations across regional teams.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;">
-          </div>
-        </div>
-        <div style="text-align:right;flex-shrink:0;">
-          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--muted);">Jan – Aug 2025</div>
-          <div style="font-family:'DM Mono',monospace;font-size:0.67rem;color:var(--muted);opacity:0.6;margin-top:3px;">Ontario, Canada</div>
+    <main class="bento-grid">
+      <!-- Hero -->
+      <div class="bento-card col-span-8">
+        <h1>IT Support Specialist and Systems Analyst</h1>
+        <p>Delivering enterprise-grade IT support and infrastructure solutions.<p>
+        <p>Specializing in Microsoft 365, Azure Entra ID, Intune, and Autopilot.<p> 
+        <p>Providing end-to-end support across hardware, software, and network environments.</p>
+        <div style="margin-top: 32px;">
+          <a href="GursherSingh_Resume.pdf" class="btn-primary" target="_blank">Download Resume</a>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section class="section" id="projects">
-  <div class="container">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects" style="margin-top:28px;">
-
-      <a href="hybrid-cloud.html" class="project-card">
-        <div class="card-left">
-          <div class="card-title">Hybrid-Cloud Infrastructure Deployment</div>
-          <div class="card-where">Algonquin College · Sep – Nov 2025</div>
-          <div class="card-stack">
-            <span class="card-stack-tag">Proxmox</span><span class="card-stack-tag">pfSense</span><span class="card-stack-tag">Active Directory</span><span class="card-stack-tag">VPN</span><span class="card-stack-tag">Veeam</span><span class="card-stack-tag">Windows Server</span><span class="card-stack-tag">Linux Server</span>
+      <!-- Info -->
+      <div class="bento-card col-span-4">
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">Location</span>
+            <span class="info-value">Ontario, Canada</span>
           </div>
-          <div class="card-desc">Led a team to design and deploy a multi-site hybrid infrastructure simulating an MSP environment - pfSense firewall, VPN tunnels, Active Directory, and Veeam disaster recovery across simulated client sites.</div>
-        </div>
-        <div class="card-right">
-          <div class="card-cta">View project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="scan-to-desktop.html" class="project-card">
-        <div class="card-left">
-          <div class="card-title">Scan-to-Desktop Service Deployment</div>
-          <div class="card-where">Ontario Public Service · May – Aug 2025</div>
-          <div class="card-stack">
-            <span class="card-stack-tag">Wireshark</span><span class="card-stack-tag">SMB</span><span class="card-stack-tag">NTFS Permissions</span><span class="card-stack-tag">Windows Defender Firewall</span><span class="card-stack-tag">TCP/IP</span><span class="card-stack-tag">Ricoh MFP</span>
+          <div class="info-item">
+            <span class="info-label">Status</span>
+            <span class="info-value"><span class="status-dot"></span>Available for Work</span>
           </div>
-          <div class="card-desc">Deployed Scan-to-Folder across 10+ provincial park locations on Windows 11 - used Wireshark packet analysis to diagnose SMB connectivity blocks and validated a repeatable rollout process province-wide.</div>
-        </div>
-        <div class="card-right">
-          <div class="card-cta">View project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="win11-migration.html" class="project-card">
-        <div class="card-left">
-          <div class="card-title">Windows 11 Enterprise Migration</div>
-          <div class="card-where">Ontario Public Service · Jan – Aug 2025</div>
-          <div class="card-stack">
-            <span class="card-stack-tag">Microsoft Intune</span><span class="card-stack-tag">Windows Autopilot</span><span class="card-stack-tag">SCCM / MECM</span><span class="card-stack-tag">Azure Entra ID</span><span class="card-stack-tag">Active Directory</span>
+          <div class="info-item">
+            <span class="info-label">Contact</span>
+            <a href="mailto:gurshers969@gmail.com" class="info-value link">gurshers969@gmail.com</a>
           </div>
-          <div class="card-desc">Supported a province-wide Windows 10 → 11 migration ahead of EOL - resolved Autopilot and Intune provisioning failures, fixed post-upgrade compatibility issues, and built a OneNote troubleshooting guide for junior co-op students and Tier1 analysts.</div>
-        </div>
-        <div class="card-right">
-          <div class="card-cta">View project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="windows-domain.html" class="project-card">
-        <div class="card-left">
-          <div class="card-title">Windows Active Directory Administration</div>
-          <div class="card-where">Algonquin College · Sep – Dec 2024</div>
-          <div class="card-stack">
-            <span class="card-stack-tag">Windows Server 2022</span><span class="card-stack-tag">Active Directory</span><span class="card-stack-tag">GPO</span><span class="card-stack-tag">Exchange Server</span><span class="card-stack-tag">WDS</span><span class="card-stack-tag">Azure</span><span class="card-stack-tag">DNS / DHCP</span>
+          <div class="info-item">
+            <span class="info-label">Social</span>
+            <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank" class="info-value link">LinkedIn ↗</a>
           </div>
-          <div class="card-desc">Built a multi-domain enterprise network with domain hierarchies, GPO-based RBAC, WDS automated imaging, Exchange Server mail flow, and Azure cloud services including VMs, storage, and RBAC.</div>
-        </div>
-        <div class="card-right">
-          <div class="card-cta">View project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="linux-enterprise.html" class="project-card">
-        <div class="card-left">
-          <div class="card-title">Linux Enterprise Network Services Administration</div>
-          <div class="card-where">Algonquin College · Sep – Dec 2024</div>
-          <div class="card-stack">
-            <span class="card-stack-tag">RHEL</span><span class="card-stack-tag">Apache</span><span class="card-stack-tag">Postfix</span><span class="card-stack-tag">OpenLDAP</span><span class="card-stack-tag">BIND DNS</span><span class="card-stack-tag">Samba</span><span class="card-stack-tag">Bash</span>
-          </div>
-          <div class="card-desc">Deployed and hardened a full Linux service stack - Apache, Samba, Postfix with SquirrelMail, OpenLDAP directory, and BIND DNS - verified end-to-end in a timed skills assessment.</div>
-        </div>
-        <div class="card-right">
-          <div class="card-cta">View project <span>→</span></div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section class="section" id="skills">
-  <div class="container">
-    <h2 class="section-title">Skills</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;">
-
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Endpoint &amp; Device Mgmt</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-size:0.82rem;color:var(--muted);">Microsoft Intune (MDM)</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Windows Autopilot</span>
-          <span style="font-size:0.82rem;color:var(--muted);">SCCM / MECM</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Imaging &amp; Deployment</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Windows 10 / 11</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Network Peripherals</span>
         </div>
       </div>
 
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#b09cf0;margin-bottom:12px;">Identity &amp; Cloud</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-size:0.82rem;color:var(--muted);">Azure Entra ID</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Active Directory / GPO</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Microsoft 365</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Microsoft Azure</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Exchange Server</span>
-        </div>
-      </div>
-
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#f0b472;margin-bottom:12px;">ITSM &amp; Service Delivery</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-size:0.82rem;color:var(--muted);">BMC Remedy</span>
-          <span style="font-size:0.82rem;color:var(--muted);">ServiceNow</span>
-          <span style="font-size:0.82rem;color:var(--muted);">ITIL Framework</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Ticket Triage</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Escalation Procedures</span>
-          <span style="font-size:0.82rem;color:var(--muted);">SLA Management</span>
-        </div>
-      </div>
-
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#7ec8a4;margin-bottom:12px;">Networking &amp; Infra</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-size:0.82rem;color:var(--muted);">TCP/IP Stack</span>
-          <span style="font-size:0.82rem;color:var(--muted);">SD-WAN</span>
-          <span style="font-size:0.82rem;color:var(--muted);">LAN/WAN</span>
-          <span style="font-size:0.82rem;color:var(--muted);">VPN</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Routing & Switching</span>
-          <span style="font-size:0.82rem;color:var(--muted);">DNS & DHCP</span>
-          <span style="font-size:0.82rem;color:var(--muted);">WLAN Troubleshooting</span>
-          <span style="font-size:0.82rem;color:var(--muted);">Firewalls</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<hr class="divider" />
-<section class="section" id="about">
-  <div class="container">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-grid">
-
-      <div class="about-card" style="grid-column: 1 / -1;">
-        <h4>Education</h4>
-        <ul style="list-style:none;">
-          <li style="font-size:0.84rem;color:var(--muted);line-height:1.5;">🎓 Computer Systems Technician - Networking<br/><span style="color:var(--muted);opacity:0.7;">Algonquin College, Ottawa, ON</span></li>
-        </ul>
-      </div>
-
-      <div class="about-card">
-        <h4>Certifications</h4>
-        <div style="display:flex;flex-direction:column;gap:9px;margin-top:2px;">
-          <div style="display:flex;align-items:center;gap:10px;background:rgba(91,141,238,0.06);border:1px solid rgba(91,141,238,0.18);border-radius:7px;padding:9px 12px;">
-            <span style="font-size:1.1rem;">🏅</span>
-            <div>
-              <div style="font-size:0.82rem;color:var(--heading);font-weight:500;line-height:1.3;">Cisco CCNA</div>
-              <div style="font-family:'DM Mono',monospace;font-size:0.63rem;color:var(--muted);margin-top:1px;">Switching, Routing &amp; Wireless Essentials</div>
+      <!-- Experience -->
+      <div class="bento-card col-span-6" id="experience">
+        <h2>Experience</h2>
+        <div class="exp-list" style="margin-top: 24px;">
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">End User Experience Analyst</span>
+              <span class="exp-date">Jan - Aug 2025</span>
             </div>
+            <span class="exp-company">Ontario Public Service</span>
+            <p style="margin-top: 8px; font-size: 0.95rem;">Tier 2 support across Windows 10/11, M365, and LOB apps. Led Windows 11 migration support and built a centralized SOP knowledge base in OneNote.</p>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;background:rgba(91,141,238,0.06);border:1px solid rgba(91,141,238,0.18);border-radius:7px;padding:9px 12px;">
-            <span style="font-size:1.1rem;">🏅</span>
-            <div>
-              <div style="font-size:0.82rem;color:var(--heading);font-weight:500;line-height:1.3;">Microsoft Certified: Azure Fundamentals</div>
-              <div style="font-family:'DM Mono',monospace;font-size:0.63rem;color:var(--muted);margin-top:1px;">AZ-900</div>
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Customer Service Representative</span>
+              <span class="exp-date">Sep 2024 - Present</span>
             </div>
+            <span class="exp-company">Circle K</span>
+            <p style="margin-top: 8px; font-size: 0.95rem;">Delivered front-line customer service, resolving complaints and managing concurrent customer interactions.</p>
           </div>
         </div>
       </div>
 
-      <div class="about-card">
-        <h4>What I do</h4>
-        <p style="font-size:0.84rem;color:var(--muted);line-height:1.85;margin-bottom:10px;">Manage enterprise endpoints and modern device provisioning using Microsoft Intune and Windows Autopilot, and administer identity systems with Entra ID and Active Directory.</p>
-        <p style="font-size:0.84rem;color:var(--muted);line-height:1.85;margin-bottom:10px;">Specialize in Tier 2 troubleshooting and root-cause analysis - restoring services fast and eliminating the conditions that caused the issue in the first place.</p>
-        <p style="font-size:0.84rem;color:var(--muted);line-height:1.85;">Across all of it, I prioritize clear documentation, reliable support, and keeping production environments stable.</p>
-      </div>
-
-      <div class="about-card" style="grid-column: 1 / -1;">
-        <h4>My Approach</h4>
-        <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;">Every incident is a signal, not just a task. When something breaks repeatedly, it means a process is missing, a policy is misconfigured, or documentation never existed. I fix the root cause, document it, and make sure the next person has what they need to handle it without escalating. I think reliable IT is something that's built intentionally, not something that just happens.</p>
-      </div>
-
-      <div class="about-card" style="grid-column: 1 / -1;">
-        <h4>Contact</h4>
-        <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:4px;align-items:center;">
-          <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank" style="font-size:0.84rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:7px;">
-            <svg style="width:14px;height:14px;flex-shrink:0;fill:var(--accent);" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            linkedin.com/in/gurshersingh1912
-          </a>
-          <span id="contact-email" style="font-size:0.84rem;color:var(--muted);display:flex;align-items:center;gap:7px;">
-            <svg style="width:14px;height:14px;flex-shrink:0;fill:var(--accent);" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-            <span id="email-text"></span>
-          </span>
-          <span id="contact-phone" style="font-size:0.84rem;color:var(--muted);display:flex;align-items:center;gap:7px;">
-            <svg style="width:14px;height:14px;flex-shrink:0;fill:var(--accent);" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            <span id="phone-text"></span>
-          </span>
+      <!-- Education & Certifications -->
+      <div class="bento-card col-span-6" id="education">
+        <h2>Education & Certifications</h2>
+        <div class="exp-list" style="margin-top: 24px;">
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Computer Systems Technician - Networking</span>
+              <span class="exp-date">Dec 2025</span>
+            </div>
+            <span class="exp-company">Algonquin College (GPA: 3.6)</span>
+          </div>
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">CCNA - Switching, Routing & Wireless Essentials</span>
+              <a href="https://www.credly.com/badges/34f64f65-4add-4aa9-9905-f9d29956f453/public_url" target="_blank" class="exp-date" style="color: var(--text-main); text-decoration: none;">View ↗</a>
+            </div>
+            <span class="exp-company">Cisco</span>
+            <p style="margin-top: 8px; font-size: 0.95rem;">Switching & VLANs, Routing Protocols, Network Security and Wireless networking.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Microsoft Certified Azure Fundamentals</span>
+              <a href="https://learn.microsoft.com/en-us/users/gurshersingh-4141/credentials/49a0a739c4c748b5" target="_blank" class="exp-date" style="color: var(--text-main); text-decoration: none;">View ↗</a>
+            </div>
+            <span class="exp-company">Microsoft</span>
+            <p style="margin-top: 8px; font-size: 0.95rem;">Cloud concepts, core Azure services, security, privacy, and compliance.</p>
+          </div>
         </div>
       </div>
-      <script>
-        (function() {
-          var u = 'gurshers969', d = 'gmail.com';
-          var el = document.getElementById('email-text');
-          var a = document.createElement('a');
-          a.href = 'mail' + 'to:' + u + '@' + d;
-          a.textContent = u + '@' + d;
-          a.style.cssText = 'color:var(--muted);text-decoration:none;';
-          a.onmouseenter = function(){ this.style.textDecoration='underline'; };
-          a.onmouseleave = function(){ this.style.textDecoration='none'; };
-          el.appendChild(a);
 
-          var ph = document.getElementById('phone-text');
-          var b = document.createElement('a');
-          b.href = 'te' + 'l:+17538861912';
-          b.textContent = '+1 (753) 886-1912';
-          b.style.cssText = 'color:var(--muted);text-decoration:none;';
-          b.onmouseenter = function(){ this.style.textDecoration='underline'; };
-          b.onmouseleave = function(){ this.style.textDecoration='none'; };
-          ph.appendChild(b);
-        })();
-      </script>
+      <div class="col-span-12" id="projects" style="margin-top: 24px;">
+        <h2 style="margin-bottom: 0;">Projects</h2>
+      </div>
 
-    </div>
+      <!-- Project 1 -->
+      <a href="hybrid-cloud.html" class="bento-card col-span-12">
+        <div class="project-card-header">
+          <h3>Hybrid-Cloud Infrastructure</h3>
+          <div class="project-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </div>
+        <p>Built a multi-site hybrid cloud environment modeled after a real MSP setup - pfSense firewalls, IPsec VPN tunnels, Active Directory, and Veeam disaster recovery across virtualized client sites</p>
+        </a>
+
+      <!-- Project 2 -->
+      <a href="scan-to-desktop.html" class="bento-card col-span-12">
+        <div class="project-card-header">
+          <h3>Enterprise Scan-to-Desktop Rollout</h3>
+          <div class="project-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </div>
+        <p>Engaged in the rollout for network scanning service across 12 provincial park locations for Windows 11 endpoints. Used Wireshark to track down SMB blocks and turned the fixes into a repeatable, province-wide deployment framework.</p>
+        </a>
+
+      <!-- Project 3 -->
+      <a href="win11-migration.html" class="bento-card col-span-12">
+        <div class="project-card-header">
+          <h3>Windows 11 Enterprise Migration</h3>
+          <div class="project-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </div>
+        <p>Supported a province-wide Windows 10 to 11 migration. Investigated Autopilot and Intune provisioning failures, fixed post-upgrade compatibility issues, conduct end-user training and wrote SOPs for Tier 1 teams and Co-op students.</p>
+        </a>
+
+      <!-- Project 4 -->
+      <a href="windows-domain.html" class="bento-card col-span-12">
+        <div class="project-card-header">
+          <h3>Windows Domain Administration</h3>
+          <div class="project-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </div>
+        <p>Built a multi-domain enterprise network from scratch - GPO-based RBAC, automated WDS imaging, Exchange mail flow, and an Azure extension with VMs, Blob Storage, and cloud IAM.</p>
+        </a>
+
+      <!-- Project 5 -->
+      <a href="linux-enterprise.html" class="bento-card col-span-12">
+        <div class="project-card-header">
+          <h3>Linux Enterprise Network Services</h3>
+          <div class="project-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </div>
+        <p>Deployed and hardened a complete Linux service stack: Apache, Samba, Postfix, OpenLDAP, and BIND DNS - validated end-to-end under timed assessment conditions.</p>
+        </a>
+
+    </main>
   </div>
-</section>
+  <script src="background.js"></script>
 </body>
 </html>

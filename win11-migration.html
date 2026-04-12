@@ -1,147 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Windows 11 Enterprise Migration - Gursher Singh</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css" />
-  <style>
-    .card-scene { padding: 40px 0; }
-    .lab-card { margin-bottom: 0; }
-    .lab-card { width: 100%; transform: scale(0.92); opacity: 0.45; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease; will-change: transform, opacity; }
-    .lab-card.in-focus { transform: scale(1); opacity: 1; border-color: var(--border2); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
-    .lab-card.near-focus { transform: scale(0.96); opacity: 0.65; }
-    .cards-section { padding: 48px 0 120px; }
-    .page-context { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 11 Enterprise Migration | Gursher Singh</title>
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
-<nav>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back</a>
-    <span class="nav-sep">|</span>
-    <span class="nav-title">Windows 11 Enterprise Migration</span>
+  <canvas id="bg-canvas"></canvas>
+  <div class="layout">
+    <nav class="navbar">
+      <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+      <div class="nav-links">
+        <span class="nav-logo">Windows 11 Enterprise Migration</span>
+      </div>
+    </nav>
+
+    <main class="bento-grid">
+      <div class="bento-card col-span-12 project-hero">
+        <h1>Windows 11 Enterprise Migration</h1>
+        <p>Supported a province-wide upgrade initiative transitioning public-sector endpoints from Windows 10 to Windows 11 ahead of the October 2025 end-of-life deadline. Remediated critical Autopilot and Intune provisioning failures, resolved post-upgrade software compatibility issues, provide end-user training and authored comprehensive knowledge-base resources.</p>
+        <div class="tags" style="justify-content: center; margin-top: 32px;">
+          <span class="tag">Microsoft Intune</span><span class="tag">Windows Autopilot</span><span class="tag">Azure Entra ID</span><span class="tag">Windows 11</span>
+        </div>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Autopilot & Intune Provisioning Failure Resolution</h3>
+        <p class="wwh-content">Diagnosed and resolved critical Windows Autopilot and Intune enrollment failures. Systematically addressed Entra ID conflicts, incorrect grouptags and hardware hash issues to maintain momentum for a large-scale enterprise migration.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Post-Upgrade Compatibility Remediation</h3>
+        <p class="wwh-content">Provided Tier 2 remediation for post-upgrade compatibility incidents. Investigated authentication failures, LOB application errors, and network access blocks caused by Windows 11 security enhancements.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>User Training & Adoption</h3>
+        <p class="wwh-content">Delivered targeted one-on-one training to government employees post-migration. Focused on UI and workflow changes to accelerate user adoption and minimize disruptions.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Knowledge Base & SOP Development</h3>
+        <p class="wwh-content">Authored a centralized OneNote troubleshooting guide documenting recurring migration issues. Created step-by-step resolution workflows to help Tier 1 technicians and future co-op students.</p>
+      </div>
+
+    </main>
   </div>
-</nav>
-
-<section class="page-header">
-  <div class="container">
-    <h1>Windows 11<br/>Enterprise Migration</h1>
-    <p class="page-context">Ontario Public Service &nbsp;·&nbsp; Jan – Aug 2025</p>
-    <p style="margin-top:18px;">Supported a province-wide upgrade of 65,000+ endpoints from Windows 10 to Windows 11 ahead of the October 2025 EOL deadline. Resolved Autopilot and Intune provisioning failures blocking deployment, fixed post-upgrade compatibility issues affecting day-to-day government operations, and built the knowledge base that let the team scale without constantly re-escalating the same problems.</p>
-    <div class="header-badges" style="margin-top:20px;">
-      </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<section class="cards-section">
-  <div class="container">
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">PROV</div>
-          <div class="lab-info">
-            <h3>Autopilot & Intune Provisioning Failures</h3>
-            <p>Devices not completing enrollment meant they couldn't receive policies, apps, or security configurations - sitting unmanaged or requiring manual IT intervention. At enterprise scale, even a small failure rate creates a significant backlog.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Windows Autopilot</span><span class="lab-tag">Microsoft Intune</span><span class="lab-tag">Azure Entra ID</span><span class="lab-tag">Device Enrollment</span><span class="lab-tag">Provisioning Logs</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">A subset of devices were failing to complete Autopilot enrollment and Intune provisioning - stalling deployment of the Windows 11 migration rollout. Failures were inconsistent across device models and Entra ID groups, with no single obvious cause. Each stuck device either sat unmanaged or required manual remediation, both of which defeated the purpose of a zero-touch deployment model.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Pulled provisioning logs from affected devices and cross-referenced against Intune device enrollment records in the Azure portal. Grouped failures into repeating categories: Autopilot profile not assigned to the device, Entra ID join failures from missing group membership, Intune policy conflicts blocking enrollment completion, and hardware hash registration issues. Resolved each category systematically. Escalated genuinely novel failures to Tier 3 with full diagnostic context documented, reducing back-and-forth.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Provisioning failure categories identified and resolved, keeping the migration rollout moving. Escalation quality improved - Tier 3 received structured diagnostics, cutting resolution time on complex cases.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">COMPAT</div>
-          <div class="lab-info">
-            <h3>Post-Upgrade Compatibility Remediation</h3>
-            <p>Windows 11 changed enough security defaults that applications and workflows working fine on Windows 10 silently broke after upgrade - hitting government employees mid-workday, during active public-facing operations.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Authentication</span><span class="lab-tag">LOB Applications</span><span class="lab-tag">Credential Manager</span><span class="lab-tag">SMB</span><span class="lab-tag">Kerberos / NTLM</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Post-migration incidents fell into three buckets: authentication failures with government systems, LOB application failures from stricter UAC and runtime changes in Windows 11, and network resource access problems from SMB and credential prompt behaviour differences. Each broke something employees depended on daily - with no warning before the upgrade.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Triaged incidents by category - authentication, application, or network - before attempting any fix. For auth issues: checked credential manager entries ande device group membership. For application failures: identified whether the cause was a compatibility issue or a policy restriction. For network resource failures: traced to SMB negotiation changes or updated credential prompt behaviour in Windows 11. Documented each resolution pattern as it emerged.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Post-upgrade incidents resolved systematically rather than reactively. The categorization approach meant common failure types were handled consistently, and recurring issue types fed directly into the knowledge base - turning one-off fixes into documented solutions.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">TRAIN</div>
-          <div class="lab-info">
-            <h3>End-User Training</h3>
-            <p>A technically clean migration that leaves employees unable to find their tools is still a failed migration. Productivity gaps in the days after cutover show up as a flood of "how do I find X" tickets - each one a government employee delayed on public-facing work.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">End-User Training</span><span class="lab-tag">Windows 11 UI</span><span class="lab-tag">Change Management</span><span class="lab-tag">Legacy App Workarounds</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">Employees being migrated had no preparation for Windows 11 UI changes - the Start menu, taskbar, and app behaviours all changed. Users with legacy application dependencies had workflows that no longer functioned identically. Without intervention at handoff, the help desk would absorb all of this as ticket volume in the days immediately after migration.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Delivered targeted 1-on-1 sessions at the point of handoff - covering the highest-impact UI changes for each user's role, not a generic walkthrough. For employees with legacy app dependencies, explained the approved workarounds and set clear expectations on timelines. Adapted each session to the individual rather than following a script. Captured recurring questions from across sessions and fed them back into the knowledge base.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Users provided with clear answers to the questions they'd otherwise have called the help desk about. Proactive training at handoff demonstrably reduced the ticket volume in the days following upgrades.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">KB</div>
-          <div class="lab-info">
-            <h3>Knowledge Base That Actually Gets Used</h3>
-            <p>Without documentation, every new technician solves the same problem from scratch. The goal wasn't a reference document - it was a troubleshooting guide that a junior analyst or incoming co-op could pick up and act on immediately.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">OneNote</span><span class="lab-tag">SOP Writing</span><span class="lab-tag">Knowledge Management</span><span class="lab-tag">Helpdesk Enablement</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The same issues were appearing across multiple analysts and multiple weeks, each person solving them independently from scratch, introducing inconsistency and burning time. There was no shared resource capturing what had already been figured out.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Built a centralized OneNote troubleshooting guide, explaining how a technician actually encounters a problem. Each entry included the diagnostic steps taken before the fix, not just the fix itself, so the reader understood the reasoning. Entries covered Autopilot/Intune failure types, compatibility incident categories, and common post-migration user issues. It also included resolution for reoccuring issue beyound the scope of migration.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Delivered a structured knowledge base used by the help desk and incoming co-op students. Reduced unnecessary escalations to senior staff and gave the team a single consistent source for troubleshooting - turning individual problem-solving into shared institutional knowledge.</div></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p><a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Gursher Singh &nbsp;·&nbsp; <a href="mailto:gurshers969@gmail.com">gurshers969@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank">www.linkedin.com/in/gurshersingh1912</a></p>
-  </div>
-</footer>
-
-<script>
-  const scenes = document.querySelectorAll('.card-scene');
-  const cards  = document.querySelectorAll('.lab-card');
-  function updateCards() {
-    const center = window.innerHeight / 2;
-    let closestIdx = 0, closestDist = Infinity, secondIdx = -1, secondDist = Infinity;
-    scenes.forEach((scene, i) => {
-      const rect = scene.getBoundingClientRect();
-      const dist = Math.abs(rect.top + rect.height / 2 - center);
-      if (dist < closestDist) { secondDist = closestDist; secondIdx = closestIdx; closestDist = dist; closestIdx = i; }
-      else if (dist < secondDist) { secondDist = dist; secondIdx = i; }
-    });
-    cards.forEach((card, i) => {
-      card.classList.remove('in-focus', 'near-focus');
-      if (i === closestIdx) card.classList.add('in-focus');
-      else if (i === secondIdx) card.classList.add('near-focus');
-    });
-  }
-  window.addEventListener('scroll', updateCards, { passive: true });
-  updateCards();
-</script>
+  <script src="background.js"></script>
 </body>
 </html>

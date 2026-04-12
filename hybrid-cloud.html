@@ -1,147 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hybrid-Cloud Infrastructure - Gursher Singh</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css" />
-  <style>
-    .card-scene { padding: 40px 0; }
-    .lab-card { margin-bottom: 0; }
-    .lab-card { width: 100%; transform: scale(0.92); opacity: 0.45; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease; will-change: transform, opacity; }
-    .lab-card.in-focus { transform: scale(1); opacity: 1; border-color: var(--border2); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
-    .lab-card.near-focus { transform: scale(0.96); opacity: 0.65; }
-    .cards-section { padding: 48px 0 120px; }
-    .page-context { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hybrid-Cloud Infrastructure | Gursher Singh</title>
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
-<nav>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back</a>
-    <span class="nav-sep">|</span>
-    <span class="nav-title">Hybrid-Cloud Infrastructure Deployment</span>
-  </div>
-</nav>
+  <canvas id="bg-canvas"></canvas>
+  <div class="layout">
+    <nav class="navbar">
+      <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+      <div class="nav-links">
+        <span class="nav-logo">Hybrid-Cloud Infrastructure</span>
+      </div>
+    </nav>
 
-<section class="page-header">
-  <div class="container">
-        <h1>Hybrid-Cloud<br/>Infrastructure Deployment</h1>
-    <p class="page-context">Algonquin College &nbsp;·&nbsp; Sep – Nov 2025</p>
-    <p style="margin-top:18px;">Led a team to design and deploy a multi-site hybrid infrastructure simulating a real MSP client environment - virtualized on Proxmox, secured with pfSense, connected over VPN, managed through Active Directory, and protected with automated Veeam backups. Built to work as a coherent system, not a collection of isolated components.</p>
-    <div class="header-badges" style="margin-top:20px;">
-          </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<section class="cards-section">
-  <div class="container">
-
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">LEAD</div>
-          <div class="lab-info">
-            <h3>Team Leadership & End-to-End Integration</h3>
-            <p>Multiple engineers building separate components simultaneously creates a risk: everything works in isolation but fails when connected. Led the team to prevent exactly that - coordinating parallel workstreams and owning the final integration.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Team Lead</span><span class="lab-tag">Task Coordination</span><span class="lab-tag">Integration Testing</span><span class="lab-tag">Validation</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">In an MSP simulation with multiple team members each owning different infrastructure layers, the biggest risk isn't whether the firewall works or whether AD works - it's whether they work together. Without someone owning end-to-end integration, components pass individual checks but the system fails at the seams.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Divided the project into parallel workstreams - virtualization, networking and firewall, identity, and backup - with clear ownership per stream. Set integration checkpoints rather than waiting until the end: each component had to prove it worked with the adjacent layer before moving on. Ran end-to-end validation from each simulated client site after integration - authentication, resource access, inter-site connectivity, and backup execution all verified together.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Delivered a fully integrated environment that worked as a system. Parallel workstreams kept the timeline on track, and integration checkpoints caught conflicts early - before they became blockers at final delivery.</div></div>
+    <main class="bento-grid">
+      <div class="bento-card col-span-12 project-hero">
+        <h1>Hybrid-Cloud Infrastructure</h1>
+        <p>Led a team to design and deploy a multi-site hybrid infrastructure simulating a real MSP environment - centralized identity management, firewall security, encrypted VPN tunnels, and automated disaster recovery, all running across a set of fully connected virtual sites.</p>
+        <div class="tags" style="justify-content: center; margin-top: 32px;">
+          <span class="tag">Proxmox</span><span class="tag">pfSense</span><span class="tag">Windows Server</span><span class="tag">Linux Server</span><span class="tag">Active Directory</span><span class="tag">Veeam</span>
         </div>
       </div>
-    </div>
 
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">FW</div>
-          <div class="lab-info">
-            <h3>Secure Site Connectivity with pfSense</h3>
-            <p>In a real MSP environment, client sites connect over the internet - traffic between them must be encrypted, and access must be explicitly permitted rather than open by default. Getting this wrong means either blocking legitimate traffic or leaving the environment unsecured.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">pfSense</span><span class="lab-tag">Firewall Rules</span><span class="lab-tag">VPN Tunnels</span><span class="lab-tag">Port Forwarding</span><span class="lab-tag">NAT</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The simulated MSP environment had multiple client sites that needed to communicate securely over WAN - replicating the reality that MSP-managed clients are often geographically distributed and connected over public internet links. All inter-site traffic needed to be encrypted, and only explicitly authorized services should be reachable across site boundaries.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Deployed pfSense instances at each site. Configured firewall rules on a default-deny basis, inter-site traffic blocked unless explicitly allowed. Established encrypted VPN tunnels between sites to secure all cross-WAN communication. Set up port forwarding rules exposing only specific services (RDP, file sharing) to authorized source networks. Tested each rule combination to confirm only intended traffic was passing.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">All inter-site traffic encrypted and controlled. Verified that services unreachable from unauthorized sites remained blocked while intended connectivity worked correctly; a functioning security boundary, not just network connectivity.</div></div>
-        </div>
+      <div class="wwh-card">
+        <h3>Team Leadership & Project Coordination</h3>
+        <p class="wwh-content">Led a cross-functional team on track across virtualization, networking, and identity workstreams. Made sure everything integrated cleanly and validated end-to-end connectivity before deadline.</p>
       </div>
-    </div>
 
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">ID</div>
-          <div class="lab-info">
-            <h3>Centralized Identity with Active Directory</h3>
-            <p>Without centralized identity, every server manages its own user accounts independently - which doesn't scale and creates inconsistent access control. AD gives a single place to manage who can access what, enforced consistently across all sites.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Active Directory</span><span class="lab-tag">DNS</span><span class="lab-tag">GPO</span><span class="lab-tag">RBAC</span><span class="lab-tag">Domain Controller</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The multi-site environment needed a single identity authority that all client VMs authenticated against, regardless of which virtual site they were on. Without this, user management would be fragmented across machines and inconsistent access control.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Promoted a Windows Server VM to domain controller and configured the AD forest. Structured OUs to mirror the simulated client org - users, groups, and workstations organized by function. Applied GPOs to enforce RBAC: users access only what their role permits. Integrated DNS with AD so all domain-joined machines resolved internal resources by name. Validated cross-site authentication by logging in from client VMs at different locations.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Centralized identity working across all sites. Cross-site authentication confirmed - users at any client VM could authenticate against the same domain, with access controlled by group membership and enforced by GPO.</div></div>
-        </div>
+      <div class="wwh-card">
+        <h3>Virtualization Platform with Proxmox</h3>
+        <p class="wwh-content">Provisioned a Proxmox VE hypervisor and built out virtual networking to simulate isolated client sites. Snapshots kept rollbacks fast and the whole setup cost-effective to scale..</p>
       </div>
-    </div>
 
-    <div class="card-scene">
-      <div class="lab-card">
-        <div class="lab-card-header">
-          <div class="lab-num">DR</div>
-          <div class="lab-info">
-            <h3>Disaster Recovery with Veeam</h3>
-            <p>A backup that has never been restored is not a backup - it's a guess. In a real world, backup is a contractual obligation and a business-continuity requirement. Implementing it means building it, scheduling it, and proving it actually works.</p>
-          </div>
-        </div>
-        <div class="lab-tags"><span class="lab-tag">Veeam Backup</span><span class="lab-tag">VM Recovery</span><span class="lab-tag">Retention Policy</span><span class="lab-tag">Backup Jobs</span><span class="lab-tag">Data Protection</span></div>
-        <div class="wwh">
-          <div class="wwh-row what"><div class="wwh-label">Problem</div><div class="wwh-content">The environment needed verified data protection for its critical VMs - domain controller and file servers especially. An unprotected environment is a liability in any MSP contract. The challenge wasn't just configuring Veeam; it was proving that a restore would actually work when needed.</div></div>
-          <div class="wwh-row why"><div class="wwh-label">Approach</div><div class="wwh-content">Installed Veeam Backup and Replication on a dedicated VM. Configured scheduled backup jobs targeting the domain controller and critical servers first. Set retention policies to balance restore point coverage against storage consumption. Ran test restores against the backup jobs to confirm VMs could be recovered to a known-good state. Documented the backup schedule and recovery procedure as part of the final project deliverables.</div></div>
-          <div class="wwh-row how"><div class="wwh-label">Outcome</div><div class="wwh-content">Verified backup and restore capability across critical VMs - simulated data loss and confirmed recovery. The environment had documented retention policies and a tested recovery process, meeting the standard expected of a real MSP client deployment.</div></div>
-        </div>
+      <div class="wwh-card">
+        <h3>Firewall, VPN & Secure Site Connectivity</h3>
+        <p class="wwh-content">Locked down inter-site traffic with pfSense firewalls and encrypted IPsec tunnels. Access control rules mirrored industry best practices and production MSP environment.</p>
       </div>
-    </div>
 
+      <div class="wwh-card">
+        <h3>Identity Management with Active Directory & DNS</h3>
+        <p class="wwh-content">Deployed a centralized Active Directory and DNS backbone. Enforced role-based access control through Group Policy Objects, ensuring secure and scalable identity management across all virtual locations.</p>
+      </div>
+
+      <div class="wwh-card">
+        <h3>Disaster Recovery with Veeam</h3>
+        <p class="wwh-content">Implemented automated Veeam backup workflows for critical virtual machines. Defined strict retention policies and conducted routine restore tests to guarantee business continuity and data protection.</p>
+      </div>
+
+    </main>
   </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p><a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Gursher Singh &nbsp;·&nbsp; <a href="mailto:gurshers969@gmail.com">gurshers969@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gurshersingh1912" target="_blank">www.linkedin.com/in/gurshersingh1912</a></p>
-  </div>
-</footer>
-
-<script>
-  const scenes = document.querySelectorAll('.card-scene');
-  const cards  = document.querySelectorAll('.lab-card');
-  function updateCards() {
-    const center = window.innerHeight / 2;
-    let closestIdx = 0, closestDist = Infinity, secondIdx = -1, secondDist = Infinity;
-    scenes.forEach((scene, i) => {
-      const rect = scene.getBoundingClientRect();
-      const dist = Math.abs(rect.top + rect.height / 2 - center);
-      if (dist < closestDist) { secondDist = closestDist; secondIdx = closestIdx; closestDist = dist; closestIdx = i; }
-      else if (dist < secondDist) { secondDist = dist; secondIdx = i; }
-    });
-    cards.forEach((card, i) => {
-      card.classList.remove('in-focus', 'near-focus');
-      if (i === closestIdx) card.classList.add('in-focus');
-      else if (i === secondIdx) card.classList.add('near-focus');
-    });
-  }
-  window.addEventListener('scroll', updateCards, { passive: true });
-  updateCards();
-</script>
+  <script src="background.js"></script>
 </body>
 </html>
