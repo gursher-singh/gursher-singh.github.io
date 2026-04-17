@@ -2,16 +2,7 @@
 
 This interactive web portfolio is designed to showcase my hands-on experience in enterprise-grade IT support, infrastructure engineering, and systems administration.
 
-## 💻 Core Technologies & Skills
-
-My expertise spans across on-premises infrastructure, cloud environments, and enterprise networking:
-
-* **☁️ Cloud & Identity:** Microsoft Azure, Microsoft 365, Entra ID (Azure AD), Microsoft Intune, Windows Autopilot, Azure RBAC.
-* **🖥️ Systems Administration:** Windows Server (Active Directory, Group Policy, DNS, Microsoft Exchange), Red Hat Enterprise Linux (OpenLDAP, Apache, Postfix MTA, Samba/NFS).
-* **🌐 Networking & Virtualization:** Proxmox VE, pfSense, Wireshark (packet analysis), BIND DNS, TCP/IP, SMB routing.
-* **🛡️ Security & Backup:** Veeam Backup & Replication, Windows Defender Firewall automation, SSL/TLS, SSH hardening, Endpoint Security.
-
-## 📁 Featured Projects Included
+## 📁 Featured Projects
 
 1. **☁️ Hybrid-Cloud Infrastructure:** A multi-site hybrid environment using Proxmox, pfSense, Active Directory, and Veeam.
 2. **🖨️ Enterprise Scan-to-Desktop Rollout:** A rollout of network scanning functionality across 12 provincial park locations.
