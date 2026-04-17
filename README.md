@@ -1,4 +1,4 @@
-# Gursher Singh - IT Professional Portfolio
+# Gursher Singh - Portfolio
 
 Welcome to the source code for my IT Professional Portfolio. This interactive web portfolio is designed to showcase my hands-on experience in enterprise-grade IT support, infrastructure engineering, and systems administration.
 
