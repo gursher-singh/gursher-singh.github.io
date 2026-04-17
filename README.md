@@ -1,20 +1,26 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Gursher Singh - IT Professional Portfolio
 
-# Run and deploy your AI Studio app
+Welcome to the source code for my IT Professional Portfolio. This interactive web portfolio is designed to showcase my hands-on experience in enterprise-grade IT support, infrastructure engineering, and systems administration.
 
-This contains everything you need to run your app locally.
+## 💻 Core Technologies & Skills
 
-View your app in AI Studio: https://ai.studio/apps/96dd4c31-5e5f-42f2-a58b-9a8986210c74
+My expertise spans across on-premises infrastructure, cloud environments, and enterprise networking:
 
-## Run Locally
+* **☁️ Cloud & Identity:** Microsoft Azure, Microsoft 365, Entra ID (Azure AD), Microsoft Intune, Windows Autopilot, Azure RBAC.
+* **🖥️ Systems Administration:** Windows Server (Active Directory, Group Policy, DNS, Microsoft Exchange), Red Hat Enterprise Linux (OpenLDAP, Apache, Postfix MTA, Samba/NFS).
+* **🌐 Networking & Virtualization:** Proxmox VE, pfSense, Wireshark (packet analysis), BIND DNS, TCP/IP, SMB routing.
+* **🛡️ Security & Backup:** Veeam Backup & Replication, Windows Defender Firewall automation, SSL/TLS, SSH hardening, Endpoint Security.
 
-**Prerequisites:**  Node.js
+## 📁 Featured Projects Included
+
+1. **☁️ Hybrid-Cloud Infrastructure:** A multi-site hybrid environment using Proxmox, pfSense, Active Directory, and Veeam.
+2. **🖨️ Enterprise Scan-to-Desktop Rollout:** A rollout of network scanning functionality across 12 provincial park locations.
+3. **🔄 Windows 11 Enterprise Migration:** A province-wide endpoint migration project involving Autopilot and Intune provisioning, resolving Entra ID conflicts, and authoring SOPs.
+4. **🏢 Windows Domain Administration:** A multi-domain Windows Server environment built from scratch featuring GPO-based software management, Exchange, DNS, and Azure RBAC/Blob Storage.
+5. **🐧 Linux Enterprise Services:** A hardened RHEL service stack featuring Apache, Postfix, OpenLDAP, BIND DNS, and Samba natively configured and secured.
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 📬 Contact
+
+* **📧 Email:** gurshers969@gmail.com
+* **💼 LinkedIn:** [linkedin.com/in/gurshersingh1912](https://www.linkedin.com/in/gurshersingh1912)
